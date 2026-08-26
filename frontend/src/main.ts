@@ -1,6 +1,6 @@
 import { createApp } from "vue"
 import { createRouter, createWebHistory, Router } from "vue-router"
-import "./style.scss"
+import "./style/style.scss"
 import App from "./App.vue"
 import Home from "./pages/Home.vue"
 import Login from "./pages/Login.vue"
