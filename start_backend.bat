@@ -1,0 +1,3 @@
+echo Ciao! Stiamo avviando il backend...
+cd Backend
+npm start
