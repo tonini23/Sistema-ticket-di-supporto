@@ -2,33 +2,37 @@
 import { defineComponent } from "vue"
 
 import axios from "axios"
-import { Articolo } from "../types"
+import { Ticket } from "../types"
 
 export default defineComponent({
   data() {
     return {
-      datiArticoli: [] as Articolo[]
+      dataTickets: [] as Ticket[]
     }
   },
   methods: {
-    getUltimiArticoli() {
-      axios.get("/api/articoli/2")
-        .then(response => this.datiArticoli = response.data) 
+    getAllTickets() {
+      axios.get("/api/tickets")
+        .then(response => this.dataTickets = response.data)
     }
   },
   mounted() {
-    this.getUltimiArticoli()
+    this.getAllTickets()
   }
 })
 </script>
 
 <template>
-  <h2>Ultimi Articoli</h2>
+  <!--<h2>Ultimi Articoli</h2>
    <article v-for="articolo in datiArticoli">
     <img :src="'/img/' + articolo.imgarticolo" alt="" />
     <h3>{{articolo.titoloarticolo}}</h3>
     <p>{{articolo.nome}} - {{articolo.dataarticolo.slice(0, 10)}}</p>
     <p>{{articolo.anteprimaarticolo}}</p>
     <a :href="`/articolo/${articolo.idarticolo}`">Leggi tutto</a>
-  </article> 
+  </article> -->
+
+  
+
+
 </template>

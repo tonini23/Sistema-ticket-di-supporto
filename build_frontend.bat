@@ -1,0 +1,3 @@
+echo Ciao! Stiamo buildando il frontend...
+cd Frontend
+npm run build 
