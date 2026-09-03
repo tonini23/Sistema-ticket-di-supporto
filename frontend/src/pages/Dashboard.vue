@@ -31,9 +31,11 @@ export default defineComponent({
       
       <div class="d-flex justify-content-between align-items-center mb-5">
         <h1 class="fw-bold m-0 fs-3">DASHBOARD ADMIN</h1>
-        <button class="btn btn-new-ticket text-white rounded-pill px-4 py-2">
-          Nuovo ticket +
-        </button>
+        <router-link to="/ticket">
+          <button class="btn btn-new-ticket text-white rounded-pill px-4 py-2" >
+            Nuovo ticket +
+          </button>
+        </router-link>
       </div>
 
       
@@ -65,13 +67,17 @@ export default defineComponent({
     
     <div class="bg-white text-dark w-100">
       
-      <div class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4">
+      <div class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4" v-for="ticket in dataTickets" :key="ticket.id">
         <div class="fs-4" style="width: 10%;">1</div>
-        <div class="fs-4 fw-normal" style="width: 40%;">BUG LOGIN</div>
-        <div class="fs-5 text-secondary fw-light" style="width: 30%;">SOFTWARE</div>
+        <div class="fs-4 fw-normal" style="width: 40%;">{{ ticket.title }}</div>
+        <div class="fs-5 text-secondary fw-light" style="width: 30%;">{{ ticket.category }}</div>
         <div style="width: 20%;">
-          <span class="badge priority-badge bg-alta text-start w-100 rounded-pill py-2 px-3 fw-normal">
-            Alta
+          <span class="badge priority-badge text-start w-100 rounded-pill py-2 px-3 fw-normal" :class="{
+            'bg-alta': ticket.priority === 'alta',
+            'bg-media': ticket.priority === 'media',
+            'bg-bassa': ticket.priority === 'bassa'
+          }">
+            {{ ticket.priority }}
           </span>
         </div>
       </div>
@@ -111,5 +117,9 @@ export default defineComponent({
 
 .bg-media {
   background-color: #FFC107 !important; 
+}
+
+.bg-bassa {
+  background-color: #4CAF50 !important; 
 }
 </style>

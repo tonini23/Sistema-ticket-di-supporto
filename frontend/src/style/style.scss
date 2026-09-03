@@ -4,3 +4,26 @@
 body {
   background-color: $page-mainColor!important;
 }
+
+.auth-wrapper {
+  padding: 1rem;
+}
+
+.auth-field {
+  border-color: #ffffff !important;
+  
+  .icon-box {
+    width: 32px;
+    height: 32px;
+    border-color: #ffffff !important;
+    color: #ffffff;
+  }
+  
+  .auth-input {
+    background: transparent;
+    border: none;
+    color: #ffffff;
+    outline: none;
+    
+  }
+}

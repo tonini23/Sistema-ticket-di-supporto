@@ -3,11 +3,15 @@
   <h2>Pagina non trovata</h2>
 </template>
 
-<style scoped>
-h3 {
+<style scoped lang="scss">
+h3, h2 {
   text-align: center;
+  color: #ffffff;
+  
+}
+
+h3 {
   font-size: 4rem;
-  color: #999;
   margin: 2rem;
 }
 </style>

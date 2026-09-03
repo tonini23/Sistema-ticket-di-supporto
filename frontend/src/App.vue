@@ -4,10 +4,11 @@
 
     <div class="d-flex align-items-center gap-3">
       <div class="d-flex align-items-center gap-2">
-        <div class="user-avatar d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white">
+        
+        <!--<div class="user-avatar d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white">
           AT
         </div>
-        <span class="fw-semibold">Andrea Tonini</span>
+        <span class="fw-semibold">Andrea Tonini</span> For now i dont store the user name so i will think later bout it -->
       </div>
 
       <button type="button" class="btn btn-outline-danger btn-sm">
