@@ -23,38 +23,93 @@ export default defineComponent({
 </script>
 
 <template>
-  <div class="dashboard-user">
-  
-  
-  <div class="d-flex justify-content-between align-items-center px-4 py-3">
-    <h2 class="h5 mb-0">I miei ticket</h2>
-    <button type="button" class="btn btn-primary">
-      <i class="bi bi-plus-lg me-1"></i>
-      Nuovo ticket
-    </button>
-  </div>
 
-  <div class="board px-4 pb-4">
-    <div class="row g-3">
+  <div class="dashboard-container">
+    
+    
+    <div class="p-4 p-md-5 text-white">
+      
+      <div class="d-flex justify-content-between align-items-center mb-5">
+        <h1 class="fw-bold m-0 fs-3">DASHBOARD ADMIN</h1>
+        <button class="btn btn-new-ticket text-white rounded-pill px-4 py-2">
+          Nuovo ticket +
+        </button>
+      </div>
 
-          <div class="card-body d-flex flex-column gap-2">
-            <div class="ticket-card card shadow-sm" role="button">
-              <div class="card-body py-2 px-3">
-                
-              </div>
-            </div>
-          </div>
+      
+      <div class="d-flex flex-column gap-4 mb-4">
+        <div class="d-flex align-items-center gap-4" style="cursor: pointer;">
+          <svg width="20" height="34" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4L20 20L4 36" />
+          </svg>
+          <span class="fw-bold fs-6 tracking-wide">APERTO</span>
+        </div>
+
         
+        <div class="d-flex align-items-center gap-4" style="cursor: pointer;">
+          <svg width="20" height="34" viewBox="0 0 24 40" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4L20 20L4 36" />
+          </svg>
+          <span class="fw-bold fs-6 tracking-wide">IN LAVORAZIONE</span>
+        </div>
+
+        
+        <div class="d-flex align-items-center gap-4" style="cursor: pointer;">
+          <svg width="34" height="20" viewBox="0 0 40 24" fill="none" stroke="currentColor" stroke-width="6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4L20 20L36 4" />
+          </svg>
+          <span class="fw-bold fs-6 tracking-wide">CHIUSO</span>
+        </div>
+      </div>
+    </div>
+    
+    <div class="bg-white text-dark w-100">
+      
+      <div class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4">
+        <div class="fs-4" style="width: 10%;">1</div>
+        <div class="fs-4 fw-normal" style="width: 40%;">BUG LOGIN</div>
+        <div class="fs-5 text-secondary fw-light" style="width: 30%;">SOFTWARE</div>
+        <div style="width: 20%;">
+          <span class="badge priority-badge bg-alta text-start w-100 rounded-pill py-2 px-3 fw-normal">
+            Alta
+          </span>
+        </div>
+      </div>
+
+      
 
     </div>
-  </div>
-</div>
 
+  </div>
 </template>
 
-<style lang="scss" scoped>
+<style scoped lang="scss">
 
+.btn-new-ticket {
+  background-color: #4F46E5; 
+  border: none;
+  font-weight: 500;
+}
+
+.tracking-wide {
+  letter-spacing: 0.05em;
+}
+
+.ticket-row {
+  min-height: 100px; 
+}
+
+.priority-badge {
+  font-size: 1rem;
+  display: block; 
+  max-width: 200px; 
+}
+
+.bg-alta {
+  background-color: #FF5252 !important; 
+}
+
+.bg-media {
+  background-color: #FFC107 !important; 
+}
 </style>
-
-
-
