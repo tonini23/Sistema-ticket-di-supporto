@@ -11,13 +11,13 @@ export default defineComponent({
     }
   },
   methods: {
-    getAllTickets() {
-      axios.get("/api/tickets")
+    getAllTicketsByUserId() {
+      axios.get(`/api/tickets/${this.$route.params.id_user}`)
         .then(response => this.dataTickets = response.data)
     }
   },
   mounted() {
-    this.getAllTickets()
+    this.getAllTicketsByUserId()
   }
 })
 </script>

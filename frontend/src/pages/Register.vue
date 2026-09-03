@@ -4,7 +4,7 @@
     
     
     <div class=" mb-5 d-flex justify-content-center align-items-center">
-        <img src="./img/logo2.svg" alt="Logo sito" style="width: 150px; height: auto;">
+        <img src="../img/logo2.svg" alt="Logo sito" style="width: 150px; height: auto;">
     </div>
 
     

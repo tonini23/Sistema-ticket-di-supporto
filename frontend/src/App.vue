@@ -1,15 +1,16 @@
 <template>
-  <header class="d-flex justify-content-between align-items-center py-3 px-4 border-bottom">
-    <h1 class="h4 mb-0"></h1>
-
-    <div class="d-flex align-items-center gap-3">
-      <div class="d-flex align-items-center gap-2">
-        
-        <!--<div class="user-avatar d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white">
-          AT
-        </div>
-        <span class="fw-semibold">Andrea Tonini</span> For now i dont store the user name so i will think later bout it -->
-      </div>
+  <header class="d-flex align-items-center py-3 px-4 border-bottom">
+    
+    <div class="d-flex ms-0">
+        <img src="./img/logo2.svg" alt="Logo sito" style="width: 50px; height: 50px;">
+    </div>
+    <h3 class="h3 mb-0">STS</h3>
+    
+    <div class="user-avatar d-flex align-items-center justify-content-center rounded-circle bg-secondary text-white ms-5">
+        AT
+    </div>
+    <span class="fw-semibold">Andrea Tonini</span>
+    <div class="d-flex align-items-center gap-3 ms-auto">
 
       <button type="button" class="btn btn-outline-danger btn-sm">
         Logout

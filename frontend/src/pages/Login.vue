@@ -2,15 +2,14 @@
 
 </script>
 
-<!-- frontend/src/pages/Login.vue -->
 <template>
   <div class="auth-wrapper d-flex flex-column justify-content-center align-items-center min-vh-100">
     
     <div class="mb-5 d-flex justify-content-center align-items-center">
-      <img src="./img/logo2.svg" alt="Logo sito" style="width: 150px; height: auto;">
-      
+      <img src="../img/logo2.svg" alt="Logo sito" style="width: 150px; height: auto;">
+      <h2 class="h2 text-white">STS</h2>
     </div>
-
+    
     
     <div class="auth-form-container w-100" style="max-width: 400px;">
       
