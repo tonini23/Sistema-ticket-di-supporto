@@ -5,11 +5,17 @@ import { createRouter, createWebHistory, Router } from "vue-router"
 import "./style/style.scss"
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.bundle.min.js'
+import '@fortawesome/fontawesome-free/css/all.css';
+
 
 // Pages imports
 import App from "./App.vue"
 import Dashboard from "./pages/Dashboard.vue"
+import DashboardAdmin from "./pages/DashboardAdmin.vue"
 import Login from "./pages/Login.vue"
+import Register from "./pages/Register.vue"
+import Ticket from "./pages/Ticket.vue"
+import TicktDetail from "./pages/TicketDetail.vue"
 import NotFound from "./pages/NotFound.vue"
 
 const router: Router = createRouter({
@@ -17,6 +23,9 @@ const router: Router = createRouter({
   routes: [
     { path: "/", component: Dashboard },
     { path: "/login", component: Login },
+    { path: "/register", component: Register },
+    { path: "/ticket", component: Ticket },
+    { path: "/ticket/:id", component: TicktDetail },
     { path: "/:pathMatch(.*)*", component: NotFound }
   ]
 })

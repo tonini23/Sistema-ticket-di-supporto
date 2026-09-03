@@ -1,6 +1,6 @@
 <template>
   <header class="d-flex justify-content-between align-items-center py-3 px-4 border-bottom">
-    <h1 class="h4 mb-0">Dashboard</h1>
+    <h1 class="h4 mb-0"></h1>
 
     <div class="d-flex align-items-center gap-3">
       <div class="d-flex align-items-center gap-2">
@@ -21,7 +21,7 @@
   <aside>
   
   </aside>
-  <footer>
+  <footer class="d-flex justify-content-center align-items-center py-3 border-top">
     <p>Andrea Tonini - Ingegneria dei sistemi web - A.A. 2025/2026</p>
   </footer>
 </template>
@@ -31,5 +31,9 @@
     width: 36px;
     height: 36px;
     font-size: 0.85rem;
+  }
+
+  header, footer {
+    background-color: #FFFFFF; 
   }
 </style>

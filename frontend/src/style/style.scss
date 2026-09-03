@@ -2,5 +2,5 @@
 @use "./mixins" as *;
 
 body {
-    background-color: $page-mainColor;
+  background-color: $page-mainColor!important;
 }
