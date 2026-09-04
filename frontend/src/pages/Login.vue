@@ -65,7 +65,7 @@ export default defineComponent({
         </div>
 
         
-        <button class="btn btn-light w-100 fw-bold py-2 rounded" type="submit">
+        <button class="button-custom btn-light w-100 fw-bold py-2 rounded" type="submit">
           ACCEDI
         </button>
 

@@ -14,7 +14,7 @@ export default defineComponent({
   },
   methods: {
     async getUser() {
-      const res = await axios.get("/api/auth/profile")
+      const res = await axios.get("/api/auth/user")
       this.user = res.data
     },
   },

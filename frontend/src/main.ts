@@ -34,7 +34,7 @@ const router: Router = createRouter({
 const protectedRoutes = ["/", "/ticket", "/ticket/:id", "/register"];
 const onlyAdminRoutes = ["/dashboard-admin", "/register"];
 
-router.beforeEach((to, from, next) => {
+/*router.beforeEach((to, from, next) => {
   const isAuthenticated = !!localStorage.getItem("token");
   const isAdmin = !!localStorage.getItem("isAdmin");//todo...
 
@@ -45,7 +45,7 @@ router.beforeEach((to, from, next) => {
   } else {
     next();
   }
-});
+});*/
 
 createApp(App)
   .use(router)

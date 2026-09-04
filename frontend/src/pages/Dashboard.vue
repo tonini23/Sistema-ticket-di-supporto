@@ -91,12 +91,6 @@ export default defineComponent({
 
 <style scoped lang="scss">
 
-.btn-new-ticket {
-  background-color: #4F46E5; 
-  border: none;
-  font-weight: 500;
-}
-
 .tracking-wide {
   letter-spacing: 0.05em;
 }
@@ -111,15 +105,5 @@ export default defineComponent({
   max-width: 200px; 
 }
 
-.bg-alta {
-  background-color: #FF5252 !important; 
-}
 
-.bg-media {
-  background-color: #FFC107 !important; 
-}
-
-.bg-bassa {
-  background-color: #4CAF50 !important; 
-}
 </style>
