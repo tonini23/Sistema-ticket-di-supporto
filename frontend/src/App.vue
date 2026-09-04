@@ -1,40 +1,31 @@
 <script lang="ts">
 import { PropType, defineComponent } from "vue"
 import { User } from "./types"
+import TopBar from "./component/TopBar.vue"
 
 import axios from "axios"
 
 export default defineComponent({
-  props: {
-    user: Object as PropType<User>,
+  components: { TopBar },
+  data() {
+    return {
+      user: null as User | null,
+    }
   },
   methods: {
-    async logout() {
-      await axios.post("/api/auth/logout")
-      location.reload()
+    async getUser() {
+      const res = await axios.get("/api/auth/profile")
+      this.user = res.data
     },
+  },
+  mounted() {
+    this.getUser()
   },
 })
 
 </script>
 <template>
-  <header class="d-flex align-items-center py-3 px-4 border-bottom">
-    <router-link to="/" class="d-flex align-items-center text-decoration-none">
-    
-      <div class="d-flex ms-0">
-          <img src="./img/logo2.svg" alt="Logo sito" style="width: 50px; height: 50px;">
-      </div>
-    </router-link>
-    <h3 class="h3 mb-0">STS</h3>
-    
-    <span class="fw-semibold">{{ user?.email }}</span>
-    <div class="d-flex align-items-center gap-3 ms-auto">
-
-      <button type="button" class="btn btn-danger btn-sm text-bold " @click="logout">
-        Logout
-      </button>
-    </div>
-  </header>
+  <TopBar />
   <main>
     <router-view />
   </main>
