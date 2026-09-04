@@ -1,3 +1,5 @@
+import 'dotenv/config'
+
 import express, { type Express,  type Request, type Response, type NextFunction }  from "express"
 
 import usersRouter from './routes/usersRouter';
@@ -7,7 +9,7 @@ import authRouter from './routes/authRouter';
 
 import historyApiFallback from "connect-history-api-fallback"
 import cookieParser from 'cookie-parser';
-import 'dotenv/config'
+
 
 
 const app: Express = express()

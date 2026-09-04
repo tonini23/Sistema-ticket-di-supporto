@@ -8,6 +8,12 @@ export interface User {
 }
 
 const JWT_SECRET = process.env.JWT_SECRET as string;
+
+if (!JWT_SECRET) {
+  throw new Error('JWT_SECRET non configurata nel file .env');
+}
+
+
 const COOKIE_NAME = 'sts_token';
 
 /** Funzione per impostare il cookie di autenticazione con il token JWT */
