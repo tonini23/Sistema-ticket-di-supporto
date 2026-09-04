@@ -8,6 +8,5 @@ export interface Ticket {
     created_at: string;
     updated_at: string;
     user_id: number;
-    nome: string;
 }
 
