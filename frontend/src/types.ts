@@ -10,3 +10,16 @@ export interface Ticket {
     user_id: number;
 }
 
+export interface Comment {
+    id: number;
+    text: string;
+    created_at: string;
+    ticket_id: number;
+    user_id: number;
+}
+export interface User {
+    id: number;
+    email: string;
+    password: string;
+}
+

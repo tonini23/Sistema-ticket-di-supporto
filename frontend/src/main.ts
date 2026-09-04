@@ -30,6 +30,23 @@ const router: Router = createRouter({
   ]
 })
 
+
+const protectedRoutes = ["/", "/ticket", "/ticket/:id", "/register"];
+const onlyAdminRoutes = ["/dashboard-admin", "/register"];
+
+router.beforeEach((to, from, next) => {
+  const isAuthenticated = !!localStorage.getItem("token");
+  const isAdmin = !!localStorage.getItem("isAdmin");//todo...
+
+  if (protectedRoutes.includes(to.path) && !isAuthenticated) {
+    next("/login");
+  } else if (onlyAdminRoutes.includes(to.path) && !isAdmin) {
+    next("/");
+  } else {
+    next();
+  }
+});
+
 createApp(App)
   .use(router)
   .mount("#app")
