@@ -8,13 +8,6 @@ import bcrypt from 'bcrypt';
 /** Funzione per la registrazione di un nuovo utente */
 export const register = async (req: Request, res: Response) => {
     
-    /*
-    const user = GetUser(req, res);
-
-    if (user) {
-        res.status(401).json({ message: 'Questa operazione richiede il logout' });
-        return;
-    } TESTA SU HOPPSCOTCH POI CANCELLA*/
      logoutRequired(req, res);
 
     const { email, password} = req.body;
@@ -45,11 +38,6 @@ export const register = async (req: Request, res: Response) => {
 
 /** Funzione per il login di un utente esistente */
 export const login = async (req: Request, res: Response) => {
-    /*const user = GetUser(req, res);
-    if (user) {
-        res.status(401).json({ message: 'Questa operazione richiede il logout' });
-        return;
-    }testareeeeeeeeeeeeefcxcdvdv*/
 
     logoutRequired(req, res);
 
@@ -70,7 +58,7 @@ export const login = async (req: Request, res: Response) => {
     if (!correctPassword) {
         res.status(400).json({ message: 'Email o password non validi' });
         return;
-    }// non segnaliamo il tipo di errore per motivi di sicurezza
+    }// non segnaliamo con precisione l'errore per motivi di sicurezza
 
     delete userData.password; 
 

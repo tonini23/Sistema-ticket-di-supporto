@@ -7,20 +7,28 @@ export default defineComponent({
   data() {
     return {
       email: "",
-      password: ""
+      password: "",
+      errorMessage: ""
     }
   },
   methods: {
     async onSubmit() {
+      this.errorMessage = ""
+
       try {
         await axios.post("/api/auth/login", 
         { email: this.email, password: this.password });
-        location.href = "/";
+
+        const redirect = typeof this.$route.query.redirect === "string"
+          ? this.$route.query.redirect
+          : "/"
+
+        window.location.assign(redirect)
       } catch (e: any) {
         if (e.response) {
-          console.log(`${e.response.status} - ${e.response.statusText}\n${e.response.data}`)
+          this.errorMessage = e.response.data?.message ?? "Email o password non validi"
         } else {
-          console.error("Errore durante il login:", e.message)
+          this.errorMessage = "Impossibile contattare il server"
         }
       }
     }
@@ -49,7 +57,7 @@ export default defineComponent({
               <circle cx="12" cy="7" r="4"></circle>
             </svg>
           </div>
-            <input type="email" class="auth-input w-100 fw-bold" placeholder="EMAIL" v-model="email">
+            <input type="email" class="auth-input w-100 fw-bold" placeholder="EMAIL" v-model="email" required>
         </div>
 
         
@@ -61,8 +69,12 @@ export default defineComponent({
               <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
             </svg>
           </div>
-          <input type="password" class="auth-input w-100 fw-bold" placeholder="PASSWORD" v-model="password">
+          <input type="password" class="auth-input w-100 fw-bold" placeholder="PASSWORD" v-model="password" required>
         </div>
+
+        <p v-if="errorMessage" class="alert alert-danger py-2">
+          {{ errorMessage }}
+        </p>
 
         
         <button class="button-custom btn-light w-100 fw-bold py-2 rounded" type="submit">

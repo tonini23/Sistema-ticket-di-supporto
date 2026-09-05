@@ -25,7 +25,7 @@ export default defineComponent({
 
 </script>
 <template>
-  <TopBar />
+  <TopBar v-if="user" :user="user" />
   <main>
     <router-view />
   </main>
