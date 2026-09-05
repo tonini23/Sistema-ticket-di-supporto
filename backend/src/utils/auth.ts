@@ -2,9 +2,10 @@ import {Request, Response} from 'express';
 import jwt from 'jsonwebtoken';
 
 export interface User {
-    Id: number;
-    Email: string;
-    Password: string;
+    id: number;
+    email: string;
+    password: string;
+    admin: number | boolean;
 }
 
 const JWT_SECRET = process.env.JWT_SECRET as string;

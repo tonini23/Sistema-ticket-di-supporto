@@ -4,6 +4,6 @@ import * as ticketsController from '../controllers/ticketsController';
 const router: Router = express.Router();
 
 router.get('/api/tickets', ticketsController.getAllTickets);
-router.get('/api/tickets/:id_user', ticketsController.getTicketByIdUser);
+router.get('/api/tickets/:user_id', ticketsController.getTicketByIdUser);
 
 export default router;

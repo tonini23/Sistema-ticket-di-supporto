@@ -2,7 +2,7 @@
 import { defineComponent } from "vue"
 
 import axios from "axios"
-import { Ticket } from "../types"
+import { Ticket, User } from "../types"
 
 export default defineComponent({
   data() {
@@ -11,10 +11,18 @@ export default defineComponent({
     }
   },
   methods: {
-    getAllTicketsByUserId() {
-      axios.get(`/api/tickets/${this.$route.params.id_user}`)
-        .then(response => this.dataTickets = response.data)
-    }
+   async getAllTicketsByUserId() {
+  try {
+    const userResponse = await axios.get<User>("/api/auth/user");
+  
+    let userId = userResponse.data.id; 
+
+    const ticketsResponse = await axios.get<Ticket[]>(`/api/tickets/${userId}`);
+    this.dataTickets = ticketsResponse.data;
+  } catch (error) {
+    console.error("Errore durante il recupero dei ticket:", error);
+  }
+}
   },
   mounted() {
     this.getAllTicketsByUserId()
@@ -32,7 +40,7 @@ export default defineComponent({
       <div class="d-flex justify-content-between align-items-center mb-5">
         <h1 class="fw-bold m-0 fs-3">DASHBOARD ADMIN</h1>
         <router-link to="/ticket">
-          <button class="btn btn-new-ticket text-white rounded-pill px-4 py-2" >
+          <button class="btn-new-ticket text-white rounded-pill px-4 py-2" >
             Nuovo ticket +
           </button>
         </router-link>
@@ -68,7 +76,7 @@ export default defineComponent({
     <div class="bg-white text-dark w-100">
       
       <div class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4" v-for="ticket in dataTickets" :key="ticket.id">
-        <div class="fs-4" style="width: 10%;">1</div>
+        <div class="fs-4" style="width: 10%;">{{ ticket.id }}</div>
         <div class="fs-4 fw-normal" style="width: 40%;">{{ ticket.title }}</div>
         <div class="fs-5 text-secondary fw-light" style="width: 30%;">{{ ticket.category }}</div>
         <div style="width: 20%;">
