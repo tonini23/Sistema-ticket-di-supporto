@@ -54,3 +54,11 @@ body {
   border: none;
   font-weight: 500;
 }
+
+.progress-bar {
+  background-color: $page-mainColor!important;
+}
+
+.completion-card {
+  background-color: $page-secondaryColor!important;
+}

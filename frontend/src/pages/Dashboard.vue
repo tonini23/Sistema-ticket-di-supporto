@@ -9,9 +9,9 @@ export default defineComponent({
     return {
       dataTickets: [] as Ticket[],
       sections: [
-        { state: 'aperto', label: 'APERTO', isOpen: false },
+        { state: 'aperto', label: 'APERTO', isOpen: true },
         { state: 'in lavorazione', label: 'IN LAVORAZIONE', isOpen: false },
-        { state: 'chiuso', label: 'CHIUSO', isOpen: true }
+        { state: 'chiuso', label: 'CHIUSO', isOpen: false }
       ],
       isLoading: true,
       errorMessage: ''
@@ -38,6 +38,13 @@ export default defineComponent({
       }
     }
   },
+  computed: {
+  completionPercentage() {
+      if (this.dataTickets.length === 0) return 0;
+      const closedTickets = this.dataTickets.filter(t => t.state === 'chiuso').length;
+      return Math.round((closedTickets / this.dataTickets.length) * 100);
+    }
+  },
   mounted() {
     this.getAllTicketsByUserId()
   }
@@ -52,15 +59,36 @@ export default defineComponent({
     <div class="p-4 p-md-5 text-white">
       
       <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="fw-bold m-0 fs-3">DASHBOARD ADMIN</h1>
+        <h1 class="fw-bold m-0 fs-3">DASHBOARD</h1> <!-- <h1 v-if="user?.is_admin">ADMIN</h1> -->
         <router-link to="/ticket">
-          <button class="btn-new-ticket text-white rounded-pill px-4 py-2" >
+          <button class="btn-new-ticket text-black rounded-pill px-4 py-2" >
             Nuovo ticket +
           </button>
         </router-link>
       </div>
-
-    </div>
+      <div class="completion-card rounded p-4 mx-4 mx-md-5 mb-4 text-black">
+          <div class="d-flex justify-content-between align-items-center mb-2">
+            <span class="fw-bold fs-5">Progresso Risoluzione Ticket</span>
+            <span class="fw-bold fs-5 text-black">{{ completionPercentage }}%</span>
+          </div>
+          <div class="progress" style="height: 20px;">
+            <div 
+              class="progress-bar progress-bar-striped progress-bar-animated" 
+              role="progressbar" 
+              :style="{ width: completionPercentage + '%' }" 
+              :aria-valuenow="completionPercentage" 
+              aria-valuemin="0" 
+              aria-valuemax="100">
+            </div>
+          </div>
+          <p class="text-black mt-2 mb-0 fs-6" v-if="completionPercentage === 100">
+           Ottimo lavoro! Tutti i ticket sono stati risolti. Prenditi un caffè fino a quando ne arriveranno di nuovi!
+          </p>
+          <p class="text-black mt-2 mb-0 fs-6" v-else>
+           Risolvi gli ultimi ticket per completare il lavoro!
+          </p>
+        </div>
+      </div>
 
     <p v-if="isLoading" class="text-white px-4 px-md-5">Caricamento ticket...</p>
     <p v-if="errorMessage" class="alert alert-danger mx-4 mx-md-5" role="alert">
@@ -110,6 +138,11 @@ export default defineComponent({
 
 .tracking-wide {
   letter-spacing: 0.05em;
+}
+
+.completion-card {
+  width: 50%;
+  background-color: #f8f9fa;
 }
 
 .ticket-arrow {
