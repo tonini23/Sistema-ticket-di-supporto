@@ -29,6 +29,24 @@ export async function getTicketByIdUser(req: Request, res: Response) {
 
 };
 
+export async function getTicketById(req: Request, res: Response){
+    const { id } = req.params;
+    connection.execute( 'SELECT * FROM tickets WHERE id = ?',
+        [id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    message: 'Errore durante il recupero del ticket'
+                });
+                return;
+            }
+
+            res.json(results);
+        }
+    );
+}
+
 export async function createTicket(req: Request, res: Response) {
     const { user_id, title, description, category, priority } = req.body;
     const state = 'aperto'; 
