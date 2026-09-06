@@ -30,9 +30,12 @@ export async function getTicketByIdUser(req: Request, res: Response) {
 };
 
 export async function createTicket(req: Request, res: Response) {
-    const { user_id, title, description, priority } = req.body;
-    connection.execute('INSERT INTO tickets (user_id, title, description, priority) VALUES (?, ?, ?, ?)',
-        [user_id, title, description, priority],
+    const { user_id, title, description, category, priority } = req.body;
+    const state = 'aperto'; 
+    const created_at = new Date(); 
+
+    connection.execute('INSERT INTO tickets (user_id, title, description, category, priority, state, created_at) VALUES (?, ?, ?, ?, ?, ?, ?)',
+        [user_id, title, description, category, priority, state, created_at],
         function (err, results) {
             if (err) {
                 console.error(err);
