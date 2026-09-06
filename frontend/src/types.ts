@@ -16,6 +16,7 @@ export interface Comment {
     created_at: string;
     ticket_id: number;
     user_id: number;
+    author_name: string | null;
 }
 export interface User {
     id: number;
