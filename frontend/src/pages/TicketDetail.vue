@@ -54,7 +54,7 @@ export default defineComponent({
         this.newCommentText = "";
         await this.getComments(); 
       } catch (e) {
-        alert("Errore durante l'invio del commento");
+        this.errorMessage = "Errore durante l'invio del commento";
         console.error(e);
       }
     },

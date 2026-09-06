@@ -15,7 +15,6 @@ axios.defaults.withCredentials = true
 // Pages imports
 import App from "./App.vue"
 import Dashboard from "./pages/Dashboard.vue"
-import DashboardAdmin from "./pages/DashboardAdmin.vue"
 import Login from "./pages/Login.vue"
 import Register from "./pages/Register.vue"
 import Ticket from "./pages/Ticket.vue"
@@ -28,7 +27,6 @@ const router: Router = createRouter({
     { path: "/", component: Dashboard, meta: { requiresAuth: true } },
     { path: "/login", component: Login },
     { path: "/register", component: Register, meta: { requiresAuth: true, requiresAdmin: true } },
-    { path: "/dashboard-admin", component: DashboardAdmin, meta: { requiresAuth: true, requiresAdmin: true } },
     { path: "/ticket", component: Ticket, meta: { requiresAuth: true } },
     { path: "/ticket/:id", component: TicktDetail, meta: { requiresAuth: true } },
     { path: "/:pathMatch(.*)*", component: NotFound }

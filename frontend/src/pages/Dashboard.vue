@@ -22,7 +22,7 @@ export default defineComponent({
     getTicketsByState(state: string) {
       return this.dataTickets.filter(ticket => ticket.state === state)
     },
-    async getAllTicketsByUserId() {
+    async loadTickets() {
       this.isLoading = true
       this.errorMessage = ''
 
@@ -30,7 +30,15 @@ export default defineComponent({
         const userResponse = await axios.get<User>("/api/auth/user")
         this.user = userResponse.data;
         const userId = userResponse.data.id
-        const ticketsResponse = await axios.get<Ticket[]>(`/api/tickets/${userId}`)
+
+        let ticketsResponse;
+        
+        if (this.user.admin === 1) {
+          ticketsResponse = await axios.get<Ticket[]>("/api/tickets")
+        } else {
+          ticketsResponse = await axios.get<Ticket[]>(`/api/tickets/${userId}`)
+        }
+        
         this.dataTickets = ticketsResponse.data
       } catch (error) {
         this.errorMessage = 'Impossibile caricare i ticket'
@@ -48,7 +56,7 @@ export default defineComponent({
     }
   },
   mounted() {
-    this.getAllTicketsByUserId()
+    this.loadTickets()
   }
 })
 </script>
@@ -61,7 +69,7 @@ export default defineComponent({
     <div class="p-4 p-md-5 text-white">
       
       <div class="d-flex justify-content-between align-items-center mb-5">
-        <h1 class="fw-bold m-0 fs-3">DASHBOARD</h1> <!-- <h1 v-if="user?.is_admin">ADMIN</h1> -->
+        <h1 class="fw-bold m-0 fs-3">DASHBOARD <template v-if="user && user.admin === 1">ADMIN</template></h1> 
         <router-link to="/ticket">
           <button class="button-custom text-black rounded-pill px-4 py-2" >
             Nuovo ticket +
