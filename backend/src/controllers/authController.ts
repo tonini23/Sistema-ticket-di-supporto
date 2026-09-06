@@ -7,8 +7,6 @@ import bcrypt from 'bcrypt';
 
 /** Funzione per la registrazione di un nuovo utente */
 export const register = async (req: Request, res: Response) => {
-    
-     logoutRequired(req, res);
 
     const { email, password} = req.body;
 
@@ -30,8 +28,6 @@ export const register = async (req: Request, res: Response) => {
     const [results] = await connection.promise().execute(
         'SELECT * FROM users WHERE email = ?', [email]);
     const newUser = (results as User[])[0];
-
-    SetUser(req, res, newUser);
 
     res.json({ message: 'Utente registrato con successo', user: newUser });
 };
