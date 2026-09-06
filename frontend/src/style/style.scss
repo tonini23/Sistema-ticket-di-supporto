@@ -11,7 +11,8 @@ body {
 
 .button-custom {
   background-color: $page-secondaryColor;
-  
+  border: none;
+  font-weight: 500;
   
   &:hover {
     background-color: #ffa407;
@@ -47,12 +48,6 @@ body {
 
 .bg-bassa {
   background-color: #4CAF50 !important; 
-}
-
-.btn-new-ticket {
-  background-color: $page-secondaryColor; 
-  border: none;
-  font-weight: 500;
 }
 
 .progress-bar {

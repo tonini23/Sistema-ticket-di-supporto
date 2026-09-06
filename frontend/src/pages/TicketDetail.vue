@@ -58,6 +58,17 @@ export default defineComponent({
         console.error(e);
       }
     },
+    async updateTicketState(newState: string) {
+      if (!this.ticket) return;
+      try {
+        await axios.put(`/api/tickets/state/${this.ticket.id}`, { state: newState });
+
+        await this.getTicket(); 
+      } catch (e) {
+        console.error("Errore durante l'aggiornamento dello stato", e);
+        this.errorMessage = "Impossibile aggiornare lo stato del ticket.";
+      }
+    },
   },
   async mounted() {
     this.isLoading = true;
@@ -109,7 +120,23 @@ export default defineComponent({
         <div class="status-banner bg-white border-top px-4 py-3 d-flex justify-content-between align-items-center border-bottom shadow-sm">
            <span class="fs-5 fw-bold text-uppercase">STATO: {{ ticket.state || 'APERTO' }}</span>
            
-           
+           <div class="d-flex gap-2" v-if="(ticket.state || 'aperto').toLowerCase() !== 'chiuso'">
+             
+             <button 
+                v-if="(ticket.state || 'aperto').toLowerCase() === 'aperto'"
+                @click="updateTicketState('in lavorazione')" 
+                class="button-custom rounded-pill px-3 fw-bold">
+               Prendi in lavorazione
+             </button>
+             
+             
+             <button 
+                v-if="user && user.admin === 1" 
+                @click="updateTicketState('chiuso')" 
+                class="btn btn-success rounded-pill px-3 fw-bold">
+               Chiudi Ticket
+             </button>
+           </div>
         </div>
         
         <div class="bg-white px-4 py-3 border-bottom shadow-sm">
