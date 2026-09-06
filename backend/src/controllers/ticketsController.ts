@@ -28,3 +28,23 @@ export async function getTicketByIdUser(req: Request, res: Response) {
     );
 
 };
+
+export async function createTicket(req: Request, res: Response) {
+    const { user_id, title, description, priority } = req.body;
+    connection.execute('INSERT INTO tickets (user_id, title, description, priority) VALUES (?, ?, ?, ?)',
+        [user_id, title, description, priority],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    message: 'Errore durante la creazione del ticket'
+                });
+                return;
+            }
+
+            res.status(201).json({
+                message: 'Ticket creato con successo'
+            });
+        }
+    );
+};
