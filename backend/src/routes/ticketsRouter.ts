@@ -7,5 +7,6 @@ router.get('/api/tickets', ticketsController.getAllTickets);
 router.get('/api/tickets/:user_id', ticketsController.getTicketByIdUser);
 router.post('/api/tickets', ticketsController.createTicket);
 router.get('/api/tickets/detail/:id', ticketsController.getTicketById);
+router.put('/api/tickets/state/:id', ticketsController.updateTicket)
 
 export default router;

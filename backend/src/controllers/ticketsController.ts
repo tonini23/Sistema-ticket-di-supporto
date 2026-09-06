@@ -77,3 +77,38 @@ export async function createTicket(req: Request, res: Response) {
         }
     );
 };
+
+export async function updateTicket(req: Request, res: Response) {
+    
+    const user = GetUser(req, res);
+    if (!user) {
+        res.status(401).json({ message: 'Devi effettuare il login' });
+        return;
+    }
+
+    const { id } = req.params;
+    const { state } = req.body;
+
+    if (!state) {
+        res.status(400).json({ message: 'Il nuovo stato non può essere vuoto' });
+        return;
+    }
+
+    connection.execute(
+        'UPDATE tickets SET state = ? WHERE id = ?',
+        [state, id],
+        function (err, results) {
+            if (err) {
+                console.error(err);
+                res.status(500).json({
+                    message: 'Errore durante l\'aggiornamento del ticket'
+                });
+                return;
+            }
+
+            res.status(200).json({
+                message: 'Stato del ticket aggiornato con successo'
+            });
+        }
+    );
+};
