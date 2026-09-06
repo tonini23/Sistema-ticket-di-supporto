@@ -27,9 +27,9 @@ export default defineComponent({
           <img src="../img/logo2.svg" alt="Logo sito" style="width: 50px; height: 50px;">
       </div>
     </router-link>
-    <h3 class="h3 mb-0">STS</h3>
+    <h3 class="h3 mb-0 me-5">STS</h3>
     
-    <span class="fw-semibold">{{ user?.email }}</span>
+    <span class="fw-semibold ms-5">{{ user?.email }}</span>
     <div class="d-flex align-items-center gap-3 ms-auto">
 
       <button type="button" class="btn btn-danger btn-sm text-bold " @click="logout">

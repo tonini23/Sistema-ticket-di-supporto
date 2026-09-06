@@ -134,7 +134,7 @@ export default defineComponent({
           <div class="fs-4 fw-normal" style="width: 40%;">{{ ticket.title }}</div>
           <div class="fs-5 text-secondary fw-light" style="width: 30%;">{{ ticket.category }}</div>
           <div style="width: 20%;">
-            <span class="badge priority-badge text-start w-100 rounded-pill py-2 px-3 fw-normal" :class="{
+            <span class="badge priority-badge text-start w-100 rounded-pill py-2 px-3 fw-bold text-black" :class="{
               'bg-alta': ticket.priority === 'alta',
               'bg-media': ticket.priority === 'media',
               'bg-bassa': ticket.priority === 'bassa'

@@ -104,7 +104,7 @@ export default defineComponent({
           </div>
 
           <div class="w-25 text-end d-flex align-items-center justify-content-end gap-3">
-            <span class="badge text-white rounded-pill py-2 px-4 fw-normal fs-6 d-inline-block text-center" 
+            <span class="badge text-black rounded-pill py-2 px-4 fw-bold fs-6 d-inline-block text-center" 
                   style="width: 120px;"
                   :class="{
                     'bg-alta': ticket.priority?.toLowerCase() === 'alta',

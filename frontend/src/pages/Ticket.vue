@@ -8,7 +8,7 @@ export default defineComponent({
     return {
       title: "",
       description: "",
-      category: "Hardware", 
+      category: "Software", 
       priority: "Alta",     
       errorMessage: "",
       successMessage: "",

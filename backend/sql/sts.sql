@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Creato il: Ago 20, 2026 alle 20:06
+-- Creato il: Set 06, 2026 alle 23:30
 -- Versione del server: 10.4.32-MariaDB
 -- Versione PHP: 8.0.30
 
@@ -35,6 +35,14 @@ CREATE TABLE `comments` (
   `created_at` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `comments`
+--
+
+INSERT INTO `comments` (`id`, `text`, `user_id`, `ticket_id`, `created_at`) VALUES
+(13, 'Potrebbe essere un problema con la licenza.', 16, 13, '2026-09-06 21:27:52'),
+(14, 'Ho verificato, infatti risulta un problema con il pagamento durante del rinnovo della licenza', 17, 13, '2026-09-06 21:29:09');
+
 -- --------------------------------------------------------
 
 --
@@ -49,10 +57,18 @@ CREATE TABLE `tickets` (
   `state` enum('aperto','in lavorazione','chiuso') NOT NULL,
   `priority` enum('bassa','media','alta') NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT current_timestamp(),
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dump dei dati per la tabella `tickets`
+--
+
+INSERT INTO `tickets` (`id`, `title`, `description`, `category`, `state`, `priority`, `created_at`, `updated_at`, `user_id`) VALUES
+(13, 'Bug login', 'Il cliente non riesce a loggarsi da telefono. ', 'software', 'in lavorazione', 'alta', '2026-09-06 21:19:53', '2026-09-06 21:19:53', 17),
+(14, 'Scheda video non funzionante', 'Scheda video rotta', 'hardware', 'aperto', 'bassa', '2026-09-06 21:22:20', '2026-09-06 21:22:20', 17),
+(20, 'Problema sincronizzazione email', 'Da questa mattina il cliente non riescepiù a ricevere le email sul client desktop.', 'software', 'in lavorazione', 'alta', '2026-09-06 21:25:41', '2026-09-06 21:25:41', 17);
 
 -- --------------------------------------------------------
 
@@ -66,6 +82,15 @@ CREATE TABLE `users` (
   `password` varchar(255) NOT NULL,
   `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dump dei dati per la tabella `users`
+--
+
+INSERT INTO `users` (`id`, `email`, `password`, `admin`) VALUES
+(16, 'andrea.tonini4@studio.unibo.it', '$2b$10$TAX4hT6dqYNqYaWgHNr7V.WmevLwp5rR77neb0wvmlxOk1HEabKhW', 1),
+(17, 'prova@prova.it', '$2b$10$9j1URR8vntdeqcUtH1PaA.8KCIqTNrQgEzJdb8opqT3ZxlDSrxCy2', 0),
+(18, 'prova2@gmail.com', '$2b$10$bXu6BWiDvheN7yyBb0qpDe8ma6rq1rfX4Te0UBSgzkgvz8TSL8wpe', 0);
 
 --
 -- Indici per le tabelle scaricate
@@ -100,19 +125,19 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT per la tabella `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT per la tabella `tickets`
 --
 ALTER TABLE `tickets`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
 
 --
 -- AUTO_INCREMENT per la tabella `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- Limiti per le tabelle scaricate
