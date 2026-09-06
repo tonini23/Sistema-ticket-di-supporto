@@ -1,6 +1,7 @@
 import { Request, Response } from 'express';
 import { connection } from '../utils/db';
 import { QueryError, RowDataPacket } from 'mysql2';
+import { GetUser } from '../utils/auth';
 
 export async function getAllComments(req: Request, res: Response) {
     connection.execute('SELECT * FROM comments', 
@@ -12,6 +13,13 @@ export async function getAllComments(req: Request, res: Response) {
 };
 
 export async function getCommentsByTicketId(req: Request, res: Response) {
+
+    const user = GetUser(req, res);
+    if (!user) {
+        res.status(401).json({ message: 'Devi effettuare il login' });
+        return;
+    }
+
     const { ticket_id } = req.params;
     
     connection.execute(`
@@ -32,6 +40,13 @@ export async function getCommentsByTicketId(req: Request, res: Response) {
 };
 
 export async function createComment(req: Request, res: Response) {
+
+    const user = GetUser(req, res);
+    if (!user) {
+        res.status(401).json({ message: 'Devi effettuare il login' });
+        return;
+    }
+
     const { ticket_id, user_id, text } = req.body;
     const created_at = new Date();
     

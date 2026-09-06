@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { connection } from '../utils/db';
+import { GetUser } from '../utils/auth';
 
 export async function getAllTickets(req: Request, res: Response) {
     connection.execute('SELECT * FROM tickets', 
@@ -30,6 +31,13 @@ export async function getTicketByIdUser(req: Request, res: Response) {
 };
 
 export async function getTicketById(req: Request, res: Response){
+
+    const user = GetUser(req, res);
+    if (!user) {
+        res.status(401).json({ message: 'Devi effettuare il login' });
+        return;
+    }
+
     const { id } = req.params;
     connection.execute( 'SELECT * FROM tickets WHERE id = ?',
         [id],

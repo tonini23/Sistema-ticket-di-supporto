@@ -114,7 +114,7 @@ export default defineComponent({
           Nessun ticket in questo stato.
         </p>
 
-        <div class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4" v-for="ticket in getTicketsByState(section.state)" :key="ticket.id">
+        <router-link :to="'/ticket/' + ticket.id" class="ticket-row d-flex align-items-center border-bottom px-4 px-md-5 py-4 text-dark text-decoration-none" v-for="ticket in getTicketsByState(section.state)" :key="ticket.id">
           <div class="fs-4" style="width: 10%;">{{ ticket.id }}</div>
           <div class="fs-4 fw-normal" style="width: 40%;">{{ ticket.title }}</div>
           <div class="fs-5 text-secondary fw-light" style="width: 30%;">{{ ticket.category }}</div>
@@ -127,7 +127,7 @@ export default defineComponent({
               {{ ticket.priority }}
             </span>
           </div>
-        </div>
+        </router-link>
       </div>
     </section>
 
