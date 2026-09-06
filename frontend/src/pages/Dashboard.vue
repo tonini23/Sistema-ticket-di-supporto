@@ -14,6 +14,7 @@ export default defineComponent({
         { state: 'chiuso', label: 'CHIUSO', isOpen: false }
       ],
       isLoading: true,
+      user: null as User | null,
       errorMessage: ''
     }
   },
@@ -27,6 +28,7 @@ export default defineComponent({
 
       try {
         const userResponse = await axios.get<User>("/api/auth/user")
+        this.user = userResponse.data;
         const userId = userResponse.data.id
         const ticketsResponse = await axios.get<Ticket[]>(`/api/tickets/${userId}`)
         this.dataTickets = ticketsResponse.data
@@ -40,7 +42,7 @@ export default defineComponent({
   },
   computed: {
   completionPercentage() {
-      if (this.dataTickets.length === 0) return 0;
+      if (this.dataTickets.length === 0) return 100;
       const closedTickets = this.dataTickets.filter(t => t.state === 'chiuso').length;
       return Math.round((closedTickets / this.dataTickets.length) * 100);
     }
@@ -61,8 +63,13 @@ export default defineComponent({
       <div class="d-flex justify-content-between align-items-center mb-5">
         <h1 class="fw-bold m-0 fs-3">DASHBOARD</h1> <!-- <h1 v-if="user?.is_admin">ADMIN</h1> -->
         <router-link to="/ticket">
-          <button class="btn-new-ticket text-black rounded-pill px-4 py-2" >
+          <button class="button-custom text-black rounded-pill px-4 py-2" >
             Nuovo ticket +
+          </button>
+        </router-link>
+        <router-link to="/register" v-if="user && user.admin === 1">
+          <button class="button-custom text-black rounded-pill px-4 py-2">
+               Registra utente
           </button>
         </router-link>
       </div>

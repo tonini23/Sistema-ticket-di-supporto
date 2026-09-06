@@ -2,7 +2,6 @@ import 'dotenv/config'
 
 import express, { type Express,  type Request, type Response, type NextFunction }  from "express"
 
-import usersRouter from './routes/usersRouter';
 import ticketsRouter from './routes/ticketsRouter';
 import commentsRouter from './routes/commentsRouter';
 import authRouter from './routes/authRouter';
@@ -24,7 +23,6 @@ app.use(express.static("public"));
 
 app.use(ticketsRouter);
 app.use(commentsRouter);
-app.use(usersRouter);
 app.use(authRouter);
 
 app.use(historyApiFallback());
